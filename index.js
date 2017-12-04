@@ -1,17 +1,26 @@
-let itemExists = function(name) {
-	let allTheSpans = $('span')
-	
-	allTheSpans.forEach((element, index) => {
-		console.log(element.target.value)
+let itemExists = function (name) {
+    let text;
+    let nameRegExp;
+    let match;
+    let toReturn = false;
 
-        
+    $("span").each(function (index, elem) {
+        text = $(elem).text();
+        nameRegExp = new RegExp(name);
+        match = text.match(nameRegExp);
+
+        if(match) {
+            swal("Oh no!", "This item already exist", "error");
+            toReturn = true;
+            return;
+        }
     });
-}
+
+    return toReturn;
+};
 
 
-console.log('hello')
-let createItemHTML = function(element) {
-
+let createItemHTML = function (element) {
     let html = ''
     if (element.check === true) {
         html += `<div class="checked">`
@@ -25,7 +34,8 @@ let createItemHTML = function(element) {
         html += `<i class="fa fa-trash delete" value="${element._id}" aria-hidden="true" title="Click here to delete item"></i>`
         html += `<i class="fa fa-check-square check" value="${element._id}" aria-hidden="true" title="Click here to check/uncheck item"></i>`
         html += `</div>`
-    };
+    }
+    ;
     return html;
 }
 
@@ -38,14 +48,14 @@ $.get('http://localhost:3232/item/all', (result, error) => {
 
 
 $('.send').click(() => {
-    console.log('button click');
-    itemExists();
-    return
+    if(itemExists($('.name').val())) {
+        return;
+    }
     let newItem = {
         name: $('.name').val(),
         price: $('.price').val(),
         quantity: $('.quantity').val()
-    }
+    };
 
     $.ajax({
         url: 'http://localhost:3232/item/create',
@@ -53,16 +63,15 @@ $('.send').click(() => {
         type: 'post',
         contentType: 'application/json',
         data: JSON.stringify(newItem),
-        success: function(data) {
+        success: function (data) {
             console.log(data);
             $('.shopping-list').append(createItemHTML(data));
             $('input').val(''); //reset inputs
         },
-        error: function(error) {
+        error: function (error) {
             console.log(error);
         }
     });
-    
 
 
 })
@@ -76,11 +85,11 @@ $('body').delegate('.delete', 'click', (event) => {
         type: 'delete',
         contentType: 'application/json',
 
-        success: function(data) {
+        success: function (data) {
 
             $(event.target).parent().remove();
         },
-        error: function(error) {
+        error: function (error) {
             swal("Oh no!", "An error happened!", "error");
         }
     });
@@ -95,12 +104,12 @@ $('body').delegate('.check', 'click', (event) => {
             type: 'patch',
             contentType: 'application/json',
 
-            success: function(data) {
+            success: function (data) {
                 $(event.target).parent().css("text-decoration", "none");
                 $(event.target).parent().css("color", "black");
                 console.log(data);
             },
-            error: function(error) {
+            error: function (error) {
                 swal("Oh no!", "An error happened!", "error");
             }
         });
@@ -111,12 +120,12 @@ $('body').delegate('.check', 'click', (event) => {
             type: 'patch',
             contentType: 'application/json',
 
-            success: function(data) {
+            success: function (data) {
                 $(event.target).parent().css("text-decoration", "line-through");
                 $(event.target).parent().css("color", "gray");
                 console.log(data);
             },
-            error: function(error) {
+            error: function (error) {
                 swal("Oh no!", "An error happened!", "error");
             }
         });
