@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+
+}
+
+.nav-bar {
+	background-color: #333;
+	
+	left: 0;
+	top: 0;
+	height: 65px;
+	width: 100%;
+
+}
+
+hr {
+    height: 5px;
+    background-color: black;
+    border-style: none;
+}
+
+.shopping-list {
+
+    padding-bottom: 10px;
+    font-size: 18px;
+    max-width: 74%;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.shopping-list div {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+    
+    font-size: 18px;
+}
+
+.shopping-list div:last-child {
+    border-bottom: none;
+}
+
+.input {
+    
+
+    font-family: 'Gochi Hand', cursive;
+    
+}
+
+h1 {
+    font-family: 'Chelsea Market', cursive;
+
+    font-size: 30px;
+}
+
+
+input {
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px 0;
+
+    font-size: 20px;
+}
+
+.send {
+    margin: 10px 0;
+    background-color: #4CAF50;
+    /* Green */
+
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.delete {
+    color: red;
+    float: right;
+    cursor: pointer;
+}
+
+.check {
+    color: green;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checked {
+    text-decoration: line-through;
+    color: lightgray;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    
+
+}
+
+
+
+.container {
+	position: relative;
+	text-align: center;
+	text-shadow: 1px 1px 2px gray;
+	font-size: 50px;
+	color: white;
+	font-family: 'Cabin Sketch', cursive;
+
+}
+
+.centered {
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.fa-heart {
+	color: red;
+}
+
+
+
