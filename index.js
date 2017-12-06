@@ -177,12 +177,27 @@ $('.tutorial').click(() => {
 	swal({
 		title: "Tutorial",
 		text: "START by adding items to shopping list. DELETE button deletes item. CHECK button checks or unchecks item. Fork and knife button shows RECIPES for an item. Scroll right on recipes to see more recipes. Click on a recipe name to go to recipe page. ENJOY!",
-		icon: "info"
+		icon: "images/icons.png"
 		
 	})
 
 })
 
+$('.color-blind').on('click', () => {
+	$(this).addClass("color-blind-active");
+	$(this).removeClass("color-blind");
+	$('.check').css("color", "yellow");
+	$('.delete').css("color", "blue");
+	$('.send').css("background-color", "red");
+})
+
+//$('.color-blind-active').on('click', () => {
+	//$(this).addClass("color-blind");
+	//$(this).removeClass("color-blind-active");
+	//$('.check').css("color", "green");
+	//$('.delete').css("color", "red");
+	//$('.send').css("background-color", "green");
+//})
 
 
 

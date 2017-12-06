@@ -115,7 +115,7 @@ img {
     font-family: 'Cabin Sketch', cursive;
 }
 
-.tutorial {
+.tutorial, .color-blind {
 	width: 260px;
     height: 60px;
     border: 2px solid #C6CCD7;
@@ -179,4 +179,23 @@ hr {
 
 h2 {
     font-family: 'Cabin Sketch', cursive;
+}
+
+@media only screen and (max-width: 375px) {
+
+  .shopping-list {
+    max-width: 95%;
+  }
+  .centered {
+  	top: 59%;
+  }
+  .tutorial, .color-blind {
+  	width: 95%;
+  	float: none;
+  	margin: 0;
+  }
+  .color-blind {
+  	margin-bottom: 20px;
+  }
+
 }
