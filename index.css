@@ -54,7 +54,6 @@ input {
 .send {
     width: 260px;
     height: 60px;
-    border: 2px solid #4CAF50;
     color: white;
     border-radius: 4px;
     width: 100%;
@@ -141,7 +140,7 @@ img {
     display: none;
 }
 
-.tutorial:hover, .color-blind:hover, normal-color:hover {
+.tutorial:hover, .color-blind:hover, .normal-color:hover {
     background-color: #00BCD4;
     color: white;
 }

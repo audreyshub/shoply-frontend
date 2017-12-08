@@ -55,7 +55,9 @@ $(document).ready(() => {
         if (error) {
             console.log(error);
         }
-
+        if (result.length === 0) {
+        	$('.shopping-list').append('<p class="no-items">There are currently no items in shopping list.</p>');
+        }
         result.forEach((element) => {
             $('.shopping-list').append(createItemHTML(element));
         });
@@ -85,6 +87,7 @@ $(document).ready(() => {
             data: JSON.stringify(newItem),
             success: function (data) {
                 console.log(data);
+                $('.no-items').remove();
                 $('.shopping-list').append(createItemHTML(data));
                 $('input').val(''); //reset inputs
             },
@@ -163,7 +166,7 @@ $(document).ready(() => {
     $('.tutorial').click(() => {
         swal({
             title: "Tutorial",
-            text: "START by adding items to shopping list. DELETE button deletes item. CHECK button checks or unchecks item. Fork and knife button shows RECIPES for an item. Scroll right on recipes to see more recipes. Click on a recipe name to go to recipe page. ENJOY!",
+            text: "Start by adding items to shopping list. DELETE button deletes item. CHECK button checks or unchecks item. Fork and knife button shows RECIPES for an item. Scroll right on recipes to see more recipes. Click on a recipe name to go to recipe page. ENJOY!",
             icon: "images/icons.png"
         })
     });
@@ -171,9 +174,12 @@ $(document).ready(() => {
     $('.color-blind').on('click', () => {
         $('.normal-color').show();
         $('.color-blind').hide();
-        $('.check').css("color", "yellow");
+        $('.check').css("color", "gray");
         $('.delete').css("color", "blue");
         $('.send').css("background-color", "red");
+        $('html, body').animate({
+                scrollTop: ($('.shopping-list').offset().top)
+            }, 500);
     });
 
     $('.normal-color').on('click', () => {
@@ -181,6 +187,9 @@ $(document).ready(() => {
         $('.color-blind').show();
         $('.check').css("color", "green");
         $('.delete').css("color", "red");
-        $('.send').css("background-color", "green");
+        $('.send').css("background-color", "#4CAF50");
+        $('html, body').animate({
+                scrollTop: ($('.shopping-list').offset().top)
+            }, 500);
     });
 });
