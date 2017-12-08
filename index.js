@@ -3,11 +3,6 @@ let appId = "fa748d22";
 let apiKey = "a51720f32aa7289581710a82264086eb";
 
 let itemExists = function (name) {
-    if(!name) {
-        swal("Oh no!", "You have to fill something in the input", "error");
-        return;
-    }
-
     let text;
     let nameRegExp;
     let match;
@@ -67,6 +62,11 @@ $(document).ready(() => {
     });
 
     $('.send').click(() => {
+        if(!($('.name').val())) {
+            swal("Oh no!", "You have to fill something in the input", "error");
+            return false;
+        }
+
         if (itemExists($('.name').val())) {
             return;
         }
