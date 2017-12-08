@@ -1,15 +1,18 @@
-let itemExists = function (name) {
+$('.normal-color').hide();
+
+
+let itemExists = function(name) {
     let text;
     let nameRegExp;
     let match;
     let toReturn = false;
 
-    $("span").each(function (index, elem) {
+    $("span").each(function(index, elem) {
         text = $(elem).text();
         nameRegExp = new RegExp(name);
         match = text.match(nameRegExp);
 
-        if(match) {
+        if (match) {
             swal("Oh no!", "This item already exist", "error");
             toReturn = true;
             return;
@@ -19,8 +22,7 @@ let itemExists = function (name) {
     return toReturn;
 };
 
-
-let createItemHTML = function (element) {
+let createItemHTML = function(element) {
     let html = ''
     if (element.check === true) {
         html += `<div class="checked">`
@@ -38,8 +40,8 @@ let createItemHTML = function (element) {
         html += `<i class="fa fa-check-square-o check" value="${element._id}" aria-hidden="true" title="Click to check/uncheck item"></i>`
         html += `<i class="fa fa-cutlery recipes" value="${element.name}" aria-hidden="true" title="Click to see recipes"></i>`
         html += `</div>`
-    }
-    ;
+    };
+
     return html;
 }
 
@@ -52,7 +54,7 @@ $.get('http://localhost:3232/item/all', (result, error) => {
 
 
 $('.send').click(() => {
-    if(itemExists($('.name').val())) {
+    if (itemExists($('.name').val())) {
         return;
     }
     let newItem = {
@@ -67,17 +69,15 @@ $('.send').click(() => {
         type: 'post',
         contentType: 'application/json',
         data: JSON.stringify(newItem),
-        success: function (data) {
+        success: function(data) {
             console.log(data);
             $('.shopping-list').append(createItemHTML(data));
             $('input').val(''); //reset inputs
         },
-        error: function (error) {
+        error: function(error) {
             console.log(error);
         }
     });
-
-
 })
 
 $('body').delegate('.delete', 'click', (event) => {
@@ -89,11 +89,11 @@ $('body').delegate('.delete', 'click', (event) => {
         type: 'delete',
         contentType: 'application/json',
 
-        success: function (data) {
+        success: function(data) {
 
             $(event.target).parent().remove();
         },
-        error: function (error) {
+        error: function(error) {
             swal("Oh no!", "An error happened!", "error");
         }
     });
@@ -108,12 +108,12 @@ $('body').delegate('.check', 'click', (event) => {
             type: 'patch',
             contentType: 'application/json',
 
-            success: function (data) {
+            success: function(data) {
                 $(event.target).parent().css("text-decoration", "none");
                 $(event.target).parent().css("color", "black");
                 console.log(data);
             },
-            error: function (error) {
+            error: function(error) {
                 swal("Oh no!", "An error happened!", "error");
             }
         });
@@ -124,12 +124,12 @@ $('body').delegate('.check', 'click', (event) => {
             type: 'patch',
             contentType: 'application/json',
 
-            success: function (data) {
+            success: function(data) {
                 $(event.target).parent().css("text-decoration", "line-through");
                 $(event.target).parent().css("color", "gray");
                 console.log(data);
             },
-            error: function (error) {
+            error: function(error) {
                 swal("Oh no!", "An error happened!", "error");
             }
         });
@@ -139,12 +139,11 @@ $('body').delegate('.check', 'click', (event) => {
 let appId = "fa748d22";
 let apiKey = "a51720f32aa7289581710a82264086eb";
 
-
 let createRecipeHtml = function(element) {
     let html = ""
     html += `<div class ="recipe">`
-    html += `<img src="${element.recipe.image}" class="recipe-img">`
     html += `<h2><a href="${element.recipe.url}" target="blank" class="recipe-link">${element.recipe.label}</a></h2>`
+    html += `<img src="${element.recipe.image}" class="recipe-img">`
     html += `</div>`
     return html;
 }
@@ -155,50 +154,46 @@ $('body').delegate('.recipes', 'click', (event) => {
     $.get(`https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${apiKey}`, (result, error) => {
         $('.recipes-container').html("");
         console.log(result);
-        $('.recipes-container').append(`<h2>Recipe ideas for ${query}:</h2>`);
+        $('.recipes-container').append(`<h1>Recipe ideas for ${query}:</h1>`);
+        $('html, body').animate({
+            scrollTop: ($('.recipes-container').offset().top)
+        }, 500)
         for (let i = 0; i < result.hits.length; i++) {
 
             $('.recipes-container').append(createRecipeHtml(result.hits[i]));
             console.log(result.hits[i].recipe.label);
-            //swal(`Here's a recipe idea for ${query}!`, `${result.hits[i].recipe.label}${result.hits[i].recipe.image}`);
-            //swal({
-            //title: `Recipe idea for ${query}:`,
-            //text: `${result.hits[0].recipe.label}`,
-            //icon: `${result.hits[0].recipe.image}`
-
-
-            //});
         }
-
-    })
+    });
 })
 
 $('.tutorial').click(() => {
-	swal({
-		title: "Tutorial",
-		text: "START by adding items to shopping list. DELETE button deletes item. CHECK button checks or unchecks item. Fork and knife button shows RECIPES for an item. Scroll right on recipes to see more recipes. Click on a recipe name to go to recipe page. ENJOY!",
-		icon: "images/icons.png"
-		
-	})
-
+    swal({
+        title: "Tutorial",
+        text: "START by adding items to shopping list. DELETE button deletes item. CHECK button checks or unchecks item. Fork and knife button shows RECIPES for an item. Scroll right on recipes to see more recipes. Click on a recipe name to go to recipe page. ENJOY!",
+        icon: "images/icons.png"
+    })
 })
 
 $('.color-blind').on('click', () => {
-	$(this).addClass("color-blind-active");
-	$(this).removeClass("color-blind");
-	$('.check').css("color", "yellow");
-	$('.delete').css("color", "blue");
-	$('.send').css("background-color", "red");
+    $('.normal-color').show();
+    $('.color-blind').hide();
+    $('.check').css("color", "yellow");
+    $('.delete').css("color", "blue");
+    $('.send').css("background-color", "red");
+})
+
+$('.normal-color').on('click', () => {
+	$('.normal-color').hide();
+    $('.color-blind').show();
+	$('.check').css("color", "green");
+    $('.delete').css("color", "red");
+    $('.send').css("background-color", "green");
 })
 
 //$('.color-blind-active').on('click', () => {
-	//$(this).addClass("color-blind");
-	//$(this).removeClass("color-blind-active");
-	//$('.check').css("color", "green");
-	//$('.delete').css("color", "red");
-	//$('.send').css("background-color", "green");
+//$(this).addClass("color-blind");
+//$(this).removeClass("color-blind-active");
+//$('.check').css("color", "green");
+//$('.delete').css("color", "red");
+//$('.send').css("background-color", "green");
 //})
-
-
-
-

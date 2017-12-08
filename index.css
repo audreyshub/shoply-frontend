@@ -7,7 +7,7 @@ body {
 }
 
 .background {
-	box-shadow: 0 1px 15px 0 gray;
+    box-shadow: 0 1px 15px 0 gray;
 }
 
 .shopping-list {
@@ -15,17 +15,16 @@ body {
     padding-bottom: 10px;
     font-size: 18px;
     font-family: 'Gochi Hand', cursive;
-    max-width: 65%;
+    max-width: 85%;
     margin: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    
 }
 
 .shopping-list div {
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
     border-bottom: 1px solid lightgray;
-    
+
     font-size: 22px;
 }
 
@@ -33,10 +32,8 @@ body {
     border-bottom: none;
 }
 
-
-
 .input {
-    font-family: 'Gochi Hand', cursive;   
+    font-family: 'Gochi Hand', cursive;
 }
 
 h1 {
@@ -52,6 +49,7 @@ input {
     padding-bottom: 5px;
     margin: 5px 0;
     font-size: 20px;
+    border: 1px solid lightgray;
 }
 
 .send {
@@ -63,16 +61,13 @@ input {
     width: 100%;
     background: #4CAF50;
     font-size: 16px;
-    cursor: pointer;    
+    cursor: pointer;
     text-transform: uppercase;
-	font-weight: 600;
+    font-weight: 600;
     text-align: center;
     padding: 15px 0px;
     margin: 30px 0;
 }
-
-
-
 
 .delete {
     color: red;
@@ -102,21 +97,31 @@ input {
 img {
     max-width: 100%;
     max-height: 100%;
+    margin-bottom: 50px;
 }
-
-
 
 .container {
     position: relative;
     text-align: center;
+    
+}
+
+.centered {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5vw;
     text-shadow: 1px 1px 2px gray;
     font-size: 50px;
     color: white;
     font-family: 'Cabin Sketch', cursive;
 }
 
-.tutorial, .color-blind {
-	width: 260px;
+.tutorial,
+.color-blind,
+.normal-color {
+    width: 260px;
     height: 60px;
     border: 2px solid #C6CCD7;
     color: #00BCD4;
@@ -124,37 +129,38 @@ img {
     float: right;
     background: transparent;
     font-size: 16px;
-    cursor: pointer;    
+    cursor: pointer;
     text-transform: uppercase;
-	font-weight: 600;
+    font-weight: 600;
     text-align: center;
     padding: 15px 0px;
-    margin: 10px 15px;
+    margin-right: 10px;
+    
 }
 
-.tutorial:hover {
-	background-color: #00BCD4;
-	color: white;
-}
-
-.centered {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.tutorial:hover, .color-blind:hover, normal-color:hover {
+    background-color: #00BCD4;
+    color: white;
 }
 
 .fa-heart {
     color: red;
 }
 
-.recipe-link {
-    font-size: 15px;
-    margin: auto;
-}
-
 .recipe-img {
     height: 200px;
+    width: 200px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.recipe-link {
+    display: block;
+    width: 200px;
+    word-wrap: break-all;
+    white-space: pre-line;
+    font-size: 15px;
+    color: #00BCD4;
 }
 
 .recipes-container {
@@ -171,31 +177,69 @@ img {
 }
 
 hr {
-	height: 2px;
+    height: 2px;
     background-color: lightgray;
     border-style: none;
-    max-width: 95%;
+    max-width: 100%;
+    box-shadow: 0 0 1px 0 gray;
+    margin-top: 50px;
 }
 
 h2 {
     font-family: 'Cabin Sketch', cursive;
 }
 
-@media only screen and (max-width: 375px) {
 
-  .shopping-list {
-    max-width: 95%;
-  }
-  .centered {
-  	top: 59%;
-  }
-  .tutorial, .color-blind {
-  	width: 95%;
-  	float: none;
-  	margin: 0;
-  }
-  .color-blind {
-  	margin-bottom: 20px;
-  }
 
+/*when screen gets larger than 580px*/
+
+@media only screen and (min-width: 580px) {
+    .shopping-list {
+        max-width: 85%;
+    }
+    .centered {
+        top: 40%;
+        font-size: 5vw;
+    }
+
+    .color-blind {
+        margin-bottom: 10px;
+    }
+
+    .container {
+        font-size: 20px;
+    }
+}
+
+
+/*when screen gets smaller than 580px*/
+
+@media only screen and (max-width: 580px) {
+
+    .shopping-list {
+        max-width: 85%;
+    }
+    .shopping-list div {
+        font-size: 18px;
+    }
+    .centered {
+        top: 52%;
+        font-size: 5vw;
+    }
+    .tutorial,
+    .color-blind {
+        width: 80%;
+        float: none;
+        margin: 0;
+    }
+    .color-blind {
+        margin-bottom: 10px;
+    }
+    .tutorial {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    h1 {
+        font-size: 25px;
+    }
 }
