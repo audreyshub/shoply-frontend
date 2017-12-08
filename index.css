@@ -17,7 +17,7 @@ body {
     font-family: 'Gochi Hand', cursive;
     max-width: 85%;
     margin: auto;
-    
+
 }
 
 .shopping-list div {
@@ -40,7 +40,6 @@ h1 {
     font-family: 'Chelsea Market', cursive;
     font-size: 30px;
 }
-
 
 input {
     width: 100%;
@@ -103,7 +102,7 @@ img {
 .container {
     position: relative;
     text-align: center;
-    
+
 }
 
 .centered {
@@ -133,9 +132,13 @@ img {
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
-    padding: 15px 0px;
+    padding: 15px 0;
     margin-right: 10px;
-    
+    margin-top: 8px;
+}
+
+.normal-color {
+    display: none;
 }
 
 .tutorial:hover, .color-blind:hover, normal-color:hover {
@@ -189,20 +192,19 @@ h2 {
     font-family: 'Cabin Sketch', cursive;
 }
 
-
-
 /*when screen gets larger than 580px*/
 
 @media only screen and (min-width: 580px) {
     .shopping-list {
         max-width: 85%;
     }
+
     .centered {
         top: 40%;
         font-size: 5vw;
     }
 
-    .color-blind {
+    .color-blind, .normal-color {
         margin-bottom: 10px;
     }
 
@@ -211,7 +213,6 @@ h2 {
     }
 }
 
-
 /*when screen gets smaller than 580px*/
 
 @media only screen and (max-width: 580px) {
@@ -219,26 +220,33 @@ h2 {
     .shopping-list {
         max-width: 85%;
     }
+
     .shopping-list div {
         font-size: 18px;
     }
+
     .centered {
         top: 52%;
         font-size: 5vw;
     }
+
     .tutorial,
-    .color-blind {
+    .color-blind,
+    .normal-color {
         width: 80%;
         float: none;
         margin: 0;
     }
-    .color-blind {
+
+    .color-blind, .normal-color {
         margin-bottom: 10px;
     }
+
     .tutorial {
         margin-bottom: 10px;
         margin-top: 10px;
     }
+
     h1 {
         font-size: 25px;
     }
