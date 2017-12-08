@@ -45,7 +45,7 @@ let createRecipeHtml = function (element) {
     let html = "";
     html += `<div class ="recipe">`;
     html += `<h2><a href="${element.recipe.url}" target="blank" class="recipe-link">${element.recipe.label}</a></h2>`;
-    html += `<img src="${element.recipe.image}" class="recipe-img">`;
+    html += `<img src="${element.recipe.image}" class="recipe-img" alt="${element.recipe.label}">`;
     html += `</div>`;
     return html;
 };
